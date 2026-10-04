@@ -1,5 +1,5 @@
 /**
- * FireFly AI - Daily Rituals Dashboard Component
+ * Smaran AI - Daily Rituals Dashboard Component
  * Tracks non-game daily activities (Sunlight exposure, Hydration, Movement, Meals, Nature touch, Evening calm)
  * to provide a comprehensive, holistic view of daily dementia wellness.
  */

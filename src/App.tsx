@@ -133,7 +133,7 @@ function MainApp() {
       navigator.serviceWorker.addEventListener('message', handleSwMessage);
     }
 
-    const seenTutorial = localStorage.getItem('firefly_tutorial_seen');
+    const seenTutorial = localStorage.getItem('Smaran_tutorial_seen');
     if (!seenTutorial) {
       setShowTutorial(true);
     }
@@ -144,7 +144,7 @@ function MainApp() {
       setShowCheckIn(true);
     }
 
-    const savedProfile = localStorage.getItem('firefly_profile');
+    const savedProfile = localStorage.getItem('Smaran_profile');
     if (savedProfile) {
       try {
         setProfile(JSON.parse(savedProfile));
@@ -251,11 +251,11 @@ function MainApp() {
 
       let conversations: any[] = [];
       try {
-        const storedChats = localStorage.getItem('firefly_local_chats');
+        const storedChats = localStorage.getItem('Smaran_local_chats');
         if (storedChats) {
           const parsedChats = JSON.parse(storedChats);
           if (Array.isArray(parsedChats) && parsedChats.length > 0) {
-            const firstChatMsgs = localStorage.getItem(`firefly_chat_msgs_${parsedChats[0].id}`);
+            const firstChatMsgs = localStorage.getItem(`Smaran_chat_msgs_${parsedChats[0].id}`);
             if (firstChatMsgs) {
               conversations = JSON.parse(firstChatMsgs);
             }
@@ -438,7 +438,7 @@ function MainApp() {
                   <span>Age: {profile?.age || '72'}</span>
                   <span>•</span>
                   <span className="text-emerald-700 font-bold bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200">
-                    Firefly NER Protocol
+                    Smaran NER Protocol
                   </span>
                 </div>
               </div>
@@ -582,7 +582,7 @@ function MainApp() {
               <div className="bg-stone-50 p-5 rounded-3xl border border-stone-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <h4 className="text-base font-bold text-stone-900">Website Walkthrough Tour</h4>
-                  <p className="text-xs sm:text-sm text-stone-600 font-medium">Replay the simple step-by-step introduction to FireFly AI.</p>
+                  <p className="text-xs sm:text-sm text-stone-600 font-medium">Replay the simple step-by-step introduction to Smaran AI.</p>
                 </div>
                 <button
                   onClick={() => {
@@ -669,7 +669,7 @@ function MainApp() {
         isOpen={showTutorial}
         onClose={() => {
           setShowTutorial(false);
-          localStorage.setItem('firefly_tutorial_seen', 'true');
+          localStorage.setItem('Smaran_tutorial_seen', 'true');
         }}
         lang={lang}
         onNavigateTab={(tab) => {

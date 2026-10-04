@@ -20,8 +20,8 @@ interface ChatSession {
   updatedAt: number;
 }
 
-const LOCAL_CHATS_KEY = 'firefly_local_chats';
-const LOCAL_MESSAGES_PREFIX = 'firefly_chat_msgs_';
+const LOCAL_CHATS_KEY = 'Smaran_local_chats';
+const LOCAL_MESSAGES_PREFIX = 'Smaran_chat_msgs_';
 
 export default function Therapist() {
   const { t } = useLanguage();

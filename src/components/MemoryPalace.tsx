@@ -278,7 +278,7 @@ export default function MemoryPalace() {
       let allMemories = [...localMems];
 
       // 2. Load palace layout config from localStorage
-      const cachedConfig = localStorage.getItem('firefly_palace_config');
+      const cachedConfig = localStorage.getItem('Smaran_palace_config');
       if (cachedConfig) {
         try {
           const parsed = JSON.parse(cachedConfig);
@@ -301,7 +301,7 @@ export default function MemoryPalace() {
 
   const savePalaceState = async (newConfig: any, newObjects: any) => {
     try {
-      localStorage.setItem('firefly_palace_config', JSON.stringify({
+      localStorage.setItem('Smaran_palace_config', JSON.stringify({
         houseConfig: newConfig,
         objects: newObjects
       }));

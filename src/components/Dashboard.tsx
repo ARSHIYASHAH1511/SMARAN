@@ -202,7 +202,7 @@ export default function Dashboard({
                   Morning Sanctuary Alarm (8:00 AM)
                 </h2>
                 <p className="text-sm sm:text-base text-stone-700 mt-1 font-medium max-w-2xl leading-relaxed">
-                  FireFly AI sounds a gentle morning chime and spoken reminder every morning at 8:00 AM to prompt you to open the application, take morning medicines, and check your 3D Memory Palace.
+                  Smaran AI sounds a gentle morning chime and spoken reminder every morning at 8:00 AM to prompt you to open the application, take morning medicines, and check your 3D Memory Palace.
                 </p>
               </div>
             </div>

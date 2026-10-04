@@ -1,5 +1,5 @@
 /**
- * FireFly AI - Daily Tasks & Reminders View
+ * Smaran AI - Daily Tasks & Reminders View
  * Dedicated screen separating medication alarms, reminder intervals,
  * and holistic circadian rituals for elder peace of mind.
  */

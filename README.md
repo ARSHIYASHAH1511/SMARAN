@@ -1,4 +1,4 @@
-# 🌿 SMARAN (FireFly AI)
+# 🌿 SMARAN (Smaran AI)
 ### *A Dual-Faced Cognitive Rehabilitation Sanctuary & Duolingo-Style Daily Habit Loop for Dementia Care*
 
 > **"Remember. Relive. Reconnect."**  
@@ -40,7 +40,7 @@ Traditional digital cognitive tools fail dementia patients because they are:
 2. **Culturally Alien:** They utilize westernized iconography and abstract logic games disconnected from the senior's lived experience.
 3. **Passive or Single-Sided:** They either place all burden on the patient alone or require caregivers to constantly supervise without automated structure.
 
-**SMARAN (FireFly AI)** reimagines dementia care as a **positive, rehabilitative habit loop inspired by Duolingo**, built upon a strict **Two-Faced ecosystem**:
+**SMARAN (Smaran AI)** reimagines dementia care as a **positive, rehabilitative habit loop inspired by Duolingo**, built upon a strict **Two-Faced ecosystem**:
 
 ```
 +--------------------------------------------------------------------------------+
@@ -414,7 +414,7 @@ Synthesizes telemetry data into a professional clinical neuropsychological repor
 3. **No Hidden Trackers:** The platform features zero advertising pixels, third-party analytics trackers, or social sharing SDKs.
 
 ### Clinical Disclaimer
-> **Medical Notice:** SMARAN (FireFly AI) is an assistive digital therapy and caregiver coordination platform. It is designed to provide non-pharmacological cognitive stimulation, circadian anchoring, and reminiscence therapy. It does not provide definitive medical diagnoses and is not a substitute for formal neurological evaluation (such as MRI, PET scans, or clinical MMSE/MoCA assessments). Caregivers should always consult certified geriatric physicians regarding medical treatments and pharmacological prescriptions.
+> **Medical Notice:** SMARAN (Smaran AI) is an assistive digital therapy and caregiver coordination platform. It is designed to provide non-pharmacological cognitive stimulation, circadian anchoring, and reminiscence therapy. It does not provide definitive medical diagnoses and is not a substitute for formal neurological evaluation (such as MRI, PET scans, or clinical MMSE/MoCA assessments). Caregivers should always consult certified geriatric physicians regarding medical treatments and pharmacological prescriptions.
 
 ---
 
@@ -429,7 +429,7 @@ Synthesizes telemetry data into a professional clinical neuropsychological repor
 ```bash
 # 1. Clone repository
 git clone <repository_url>
-cd smaran-firefly-ai
+cd smaran-Smaran-ai
 
 # 2. Install dependencies
 npm install

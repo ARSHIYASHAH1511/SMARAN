@@ -1,4 +1,4 @@
-// Firefly AI - Service Worker for Background Medication & Activity Reminders
+// Smaran AI - Service Worker for Background Medication & Activity Reminders
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

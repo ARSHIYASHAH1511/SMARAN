@@ -1,5 +1,5 @@
 /**
- * FireFly AI - Background Medication & Daily Activity Reminder Engine
+ * Smaran AI - Background Medication & Daily Activity Reminder Engine
  * Supports 8:00 AM Daily Morning Sanctuary Alarm, 90-minute reminder intervals,
  * Web Worker background timing, Service Worker OS notifications, Web Audio calming chimes,
  * and multilingual voice alerts without requiring authentication.
@@ -37,8 +37,8 @@ export interface ReminderLog {
   completedAt?: number;
 }
 
-const LOCAL_STORAGE_KEY = 'firefly_reminders_cache';
-const LOCAL_LOGS_KEY = 'firefly_reminder_logs';
+const LOCAL_STORAGE_KEY = 'Smaran_reminders_cache';
+const LOCAL_LOGS_KEY = 'Smaran_reminder_logs';
 
 /**
  * Calculates the timestamp of the very next 8:00 AM.
@@ -539,7 +539,7 @@ export function speakReminderText(text: string, language: string = 'en') {
       try {
         window.speechSynthesis.resume();
         const utterance = new SpeechSynthesisUtterance(text);
-        (window as any).__fireflyUtterance = utterance;
+        (window as any).__SmaranUtterance = utterance;
         utterance.rate = 0.86;
         utterance.pitch = 1.0;
         utterance.volume = 1.0;
@@ -585,12 +585,12 @@ export function speakReminderText(text: string, language: string = 'en') {
         }
 
         utterance.onend = () => {
-          (window as any).__fireflyUtterance = null;
+          (window as any).__SmaranUtterance = null;
         };
 
         utterance.onerror = (e) => {
           console.warn('[ReminderEngine] TTS error:', e);
-          (window as any).__fireflyUtterance = null;
+          (window as any).__SmaranUtterance = null;
           playSyntheticBeepFallback();
         };
 
@@ -798,7 +798,7 @@ class ReminderEngine {
       playChimeSound();
     }
 
-    const userLang = ((typeof window !== 'undefined' && localStorage.getItem('firefly_lang')) || 'en') as Language;
+    const userLang = ((typeof window !== 'undefined' && localStorage.getItem('Smaran_lang')) || 'en') as Language;
     const localized = getLocalizedReminderContent(rem, userLang);
 
     if (rem.voiceAlert) {
@@ -822,7 +822,7 @@ class ReminderEngine {
       body,
       icon: '/favicon.ico',
       badge: '/favicon.ico',
-      tag: `firefly-rem-${rem.id}`,
+      tag: `Smaran-rem-${rem.id}`,
       requireInteraction: true,
       data: {
         reminderId: rem.id,
@@ -832,7 +832,7 @@ class ReminderEngine {
       actions: [
         {
           action: 'open_app',
-          title: is8AM ? '⏰ Open FireFly AI' : 'View Alert',
+          title: is8AM ? '⏰ Open Smaran AI' : 'View Alert',
         },
         {
           action: 'mark_done',
