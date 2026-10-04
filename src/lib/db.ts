@@ -2,7 +2,7 @@ import localforage from 'localforage';
 import { imgBihu, imgCourtyard, imgDiyas } from '../assets/images';
 
 localforage.config({
-  name: 'FireFlyAI',
+  name: 'SmaranAI',
   storeName: 'memories',
 });
 

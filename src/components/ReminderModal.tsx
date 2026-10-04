@@ -1,5 +1,5 @@
 /**
- * Firefly AI - High-Contrast Accessible Reminder Alert Modal
+ * Smaran AI - High-Contrast Accessible Reminder Alert Modal
  * Designed with senior-friendly large typography, clear action buttons,
  * and immediate navigation to the Memory Palace or medication confirmation.
  */

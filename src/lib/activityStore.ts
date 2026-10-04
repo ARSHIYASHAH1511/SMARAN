@@ -1,5 +1,5 @@
 /**
- * FireFly AI - Local Activity & Telemetry Store (No Authentication Required)
+ * Smaran AI - Local Activity & Telemetry Store (No Authentication Required)
  */
 
 export interface ActivityLog {
@@ -10,7 +10,7 @@ export interface ActivityLog {
   timestamp: number;
 }
 
-const STORAGE_KEY = 'firefly_activity_logs';
+const STORAGE_KEY = 'Smaran_activity_logs';
 
 export const getActivities = (): ActivityLog[] => {
   if (typeof window === 'undefined') return [];

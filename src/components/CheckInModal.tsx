@@ -24,9 +24,9 @@ export default function CheckInModal({ onComplete }: { onComplete: () => void })
     // Store locally to prevent showing again today
     localStorage.setItem('smriti_last_checkin', dateString);
     try {
-      const existing = JSON.parse(localStorage.getItem('firefly_checkins') || '[]');
+      const existing = JSON.parse(localStorage.getItem('Smaran_checkins') || '[]');
       existing.unshift(checkInData);
-      localStorage.setItem('firefly_checkins', JSON.stringify(existing.slice(0, 30)));
+      localStorage.setItem('Smaran_checkins', JSON.stringify(existing.slice(0, 30)));
     } catch {
       // ignore
     }

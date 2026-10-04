@@ -1,5 +1,5 @@
 /**
- * FireFly AI - Daily Rituals Engine for Holistic Dementia Care
+ * Smaran AI - Daily Rituals Engine for Holistic Dementia Care
  * Tracks non-game daily physical, circadian, and sensory wellness rituals:
  * - Morning sunlight exposure (circadian rhythm entrainment & sundowning mitigation)
  * - Hydration & herbal tea (delirium & UTI prevention)
@@ -46,7 +46,7 @@ export interface DailyRitualDay {
   updatedAt: number;
 }
 
-const STORAGE_KEY_PREFIX = 'firefly_daily_rituals_';
+const STORAGE_KEY_PREFIX = 'Smaran_daily_rituals_';
 
 export const getTodayDateKey = (): string => {
   const d = new Date();

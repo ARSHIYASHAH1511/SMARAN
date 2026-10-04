@@ -1,5 +1,5 @@
 /**
- * FireFly AI - Medication & Daily Activity Reminder Notification Manager
+ * Smaran AI - Medication & Daily Activity Reminder Notification Manager
  * Allows patients and caregivers to set user-defined intervals, toggle alerts,
  * enable background notifications, and test alerts instantly.
  */
@@ -65,7 +65,7 @@ export default function ReminderManagerModal({
     });
     setNotificationPermission(reminderEngine.getNotificationPermission());
     try {
-      const cachedLogs = JSON.parse(localStorage.getItem('firefly_reminder_logs') || '[]');
+      const cachedLogs = JSON.parse(localStorage.getItem('Smaran_reminder_logs') || '[]');
       setLogs(cachedLogs);
     } catch (e) {
       console.warn('Logs load notice', e);
