@@ -1,0 +1,126 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+    
+    function isValidId(id) { return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); }
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+    function isSignedIn() { return request.auth != null; }
+    function isOwner(userId) { return isSignedIn() && request.auth.uid == userId; }
+    
+    function isValidChat(data) {
+      return data.keys().hasAll(['title', 'userId', 'createdAt', 'updatedAt'])
+        && data.keys().size() == 4
+        && data.title is string && data.title.size() <= 100
+        && data.userId is string && data.userId.size() <= 128
+        && data.userId == request.auth.uid
+        && data.createdAt is number
+        && data.updatedAt is number;
+    }
+    
+    function isValidMessage(data) {
+      let hasRequired = data.keys().hasAll(['role', 'content', 'createdAt']);
+      let sizeOk = data.keys().size() == 3 || (data.keys().hasAny(['attachedImage']) && data.keys().size() <= 4);
+      return hasRequired && sizeOk
+        && data.role is string && (data.role == 'user' || data.role == 'assistant')
+        && data.content is string && data.content.size() <= 5000
+        && data.createdAt is number;
+    }
+
+    function isValidCheckIn(data) {
+      return data.keys().hasAll(['userId', 'dateString', 'mood', 'sleep', 'energy', 'createdAt'])
+        && data.keys().size() == 6
+        && data.userId is string && data.userId.size() <= 128
+        && data.userId == request.auth.uid
+        && data.dateString is string && data.dateString.size() <= 10
+        && data.mood is string && (data.mood == 'happy' || data.mood == 'okay' || data.mood == 'sad')
+        && data.sleep is string && (data.sleep == 'good' || data.sleep == 'okay' || data.sleep == 'poor')
+        && data.energy is string && (data.energy == 'high' || data.energy == 'medium' || data.energy == 'low')
+        && data.createdAt is number;
+    }
+
+    function isValidUserProfile(data) {
+      return data.keys().hasAll(['name', 'age', 'email'])
+        && data.keys().size() == 3
+        && data.name is string && data.name.size() <= 100
+        && data.age is string && data.age.size() <= 3
+        && data.email is string && data.email.size() <= 100;
+    }
+
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      allow create, update: if isOwner(userId) && isValidUserProfile(incoming());
+      
+      match /palace/{document=**} {
+        allow read, write: if isOwner(userId);
+      }
+      
+      match /memories/{document=**} {
+        allow read, write: if isOwner(userId);
+      }
+      
+      match /activities/{document=**} {
+        allow read, write: if isOwner(userId);
+      }
+      
+      match /reminders/{document=**} {
+        allow read, write: if isOwner(userId);
+      }
+
+      match /reminderLogs/{document=**} {
+        allow read, write: if isOwner(userId);
+      }
+
+      match /rituals/{document=**} {
+        allow read, write: if isOwner(userId);
+      }
+      
+      match /checkIns/{checkInId} {
+        allow read: if isOwner(userId);
+        
+        allow create: if isOwner(userId)
+                      && isValidId(checkInId)
+                      && isValidCheckIn(incoming());
+                      
+        allow update: if isOwner(userId)
+                      && isValidCheckIn(incoming())
+                      && incoming().userId == existing().userId
+                      && incoming().createdAt == existing().createdAt;
+                      
+        allow delete: if isOwner(userId);
+      }
+
+      match /chats/{chatId} {
+        allow read: if isOwner(userId);
+        
+        allow create: if isOwner(userId)
+                      && isValidId(chatId)
+                      && isValidChat(incoming());
+                      
+        allow update: if isOwner(userId)
+                      && isValidChat(incoming())
+                      && incoming().diff(existing()).affectedKeys().hasOnly(['updatedAt', 'title'])
+                      && incoming().userId == existing().userId
+                      && incoming().createdAt == existing().createdAt;
+                      
+        allow delete: if isOwner(userId);
+
+        match /messages/{messageId} {
+          allow read: if isOwner(userId);
+          
+          allow create: if isOwner(userId)
+                        && isValidId(messageId)
+                        && isValidMessage(incoming())
+                        && exists(/databases/$(database)/documents/users/$(userId)/chats/$(chatId));
+                        
+          // Messages are immutable once created
+          allow update: if false;
+          allow delete: if isOwner(userId);
+        }
+      }
+    }
+  }
+}

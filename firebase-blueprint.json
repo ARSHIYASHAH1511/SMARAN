@@ -1,0 +1,111 @@
+{
+  "entities": {
+    "Chat": {
+      "title": "Chat Session",
+      "description": "A single conversation session with the therapist.",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "userId": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "createdAt": {
+          "type": "number"
+        },
+        "updatedAt": {
+          "type": "number"
+        }
+      },
+      "required": ["title", "userId", "createdAt", "updatedAt"]
+    },
+    "Message": {
+      "title": "Chat Message",
+      "description": "A single message inside a chat session.",
+      "type": "object",
+      "properties": {
+        "role": {
+          "type": "string",
+          "enum": ["user", "assistant"]
+        },
+        "content": {
+          "type": "string",
+          "maxLength": 5000
+        },
+        "createdAt": {
+          "type": "number"
+        }
+      },
+      "required": ["role", "content", "createdAt"]
+    },
+    "CheckIn": {
+      "title": "Daily Check-In",
+      "description": "User's daily mood and cognitive check-in.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "dateString": {
+          "type": "string",
+          "maxLength": 10
+        },
+        "mood": {
+          "type": "string",
+          "enum": ["happy", "okay", "sad"]
+        },
+        "sleep": {
+          "type": "string",
+          "enum": ["good", "okay", "poor"]
+        },
+        "energy": {
+          "type": "string",
+          "enum": ["high", "medium", "low"]
+        },
+        "createdAt": {
+          "type": "number"
+        }
+      },
+      "required": ["userId", "dateString", "mood", "sleep", "energy", "createdAt"]
+    },
+    "Reminder": {
+      "title": "Medication & Activity Reminder",
+      "description": "User-defined reminder interval for medication or daily activity.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "category": { "type": "string", "enum": ["medication", "palace", "activity", "hydration", "prayer"] },
+        "intervalMinutes": { "type": "number" },
+        "scheduledTime": { "type": "string" },
+        "enabled": { "type": "boolean" },
+        "voiceAlert": { "type": "boolean" },
+        "notes": { "type": "string" },
+        "nextTriggerTime": { "type": "number" },
+        "lastTriggered": { "type": "number" }
+      },
+      "required": ["title", "category", "enabled"]
+    }
+  },
+  "firestore": {
+    "users/{userId}/reminders/{reminderId}": {
+      "schema": "Reminder",
+      "description": "User medication and daily activity reminders."
+    },
+    "users/{userId}/chats/{chatId}": {
+      "schema": "Chat",
+      "description": "User's individual chat sessions."
+    },
+    "users/{userId}/chats/{chatId}/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Messages within a specific chat session."
+    },
+    "users/{userId}/checkIns/{checkInId}": {
+      "schema": "CheckIn",
+      "description": "User's daily check-in records."
+    }
+  }
+}
